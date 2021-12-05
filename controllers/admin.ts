@@ -13,7 +13,7 @@ exports.fetchAllProperties = async (req: Request, res: Response, next: NextFunct
     Property.find( )
     .then( ( data: any ) => {
 
-        console.log( 'fetched all properties' );
+        console.log( 'fetched all properties here' );
         res.status( 200 ).send( { msg: 'ok', data: data } );        
     
     } )
