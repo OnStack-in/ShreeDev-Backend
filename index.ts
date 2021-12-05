@@ -50,7 +50,7 @@ mongoose
     } )
     .catch( ( err: Error ) => {
 
-        console.log( 'error while connecting to db' );
+        console.log( 'error while connecting to db', err );
 
     } )
 
