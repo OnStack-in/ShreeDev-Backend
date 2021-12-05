@@ -2,12 +2,17 @@ import express, { NextFunction } from 'express';
 import path from 'path';
 
 require('dotenv').config({ path: path.resolve(__dirname, '.env') });
+import cors from 'cors';
 
 const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
-const cors = require('./middlewares/cors');
+// import cors from "cors"
+
+
+
+// const cors1 = require('./middlewares/cors');
 
 // const auth = require( './routes/auth' );
 const admin = require( './routes/admin' );
@@ -19,13 +24,15 @@ const PORT = process.env.PORT || 8000;
 
 const app = express( );
 
+app.use(cors({ origin: "*", credentials: true }))
+
 // Using bodyParser
 app.use( bodyParser.json( ) );
 app.use( express.urlencoded( { extended: true } ) );
 
 
 // Adding cors middleware
-app.use( cors );
+// app.use( cors );
 
 
 // app.use( '/auth', auth );
