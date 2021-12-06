@@ -30,7 +30,7 @@ exports.fetchAllProperties = async (req: Request, res: Response, next: NextFunct
 exports.addProperty = async (req: Request, res: Response, next: NextFunction) => {
 
     const body = req.body;
-    const { type, subType, propertyName, description, address, addressMapLink, amenties, nearbyLocation, videoLink, imageLink } = body;
+    const { type, subType, location, propertyName, description, address, addressMapLink, amenties, nearbyLocation, videoLink, imageLink } = body;
 
     let property = new Property( {
         type: type,
@@ -42,7 +42,8 @@ exports.addProperty = async (req: Request, res: Response, next: NextFunction) =>
         amenties: amenties,
         nearbyLocation: nearbyLocation,
         videoLink: videoLink,
-        imageLink: imageLink
+        imageLink: imageLink,
+        location: location
     });
 
     property
@@ -67,9 +68,9 @@ exports.editProperty = async (req: Request, res: Response, next: NextFunction) =
     const admin_id = req.body.userId;
     const id = req.params.id;
 
-    const { type, subType, propertyName, description, address, addressMapLink, amenties, nearbyLocation, videoLink, imageLink } = req.body;
+    const { type, subType, propertyName, description, address, addressMapLink, amenties, nearbyLocation, videoLink, location, imageLink } = req.body;
 
-    Property.findOneAndUpdate( { _id: id }, { type, subType, propertyName, description, address, addressMapLink, amenties, nearbyLocation, videoLink, imageLink }, { new: true })
+    Property.findOneAndUpdate( { _id: id }, { type, subType, propertyName, description, address, addressMapLink, amenties, nearbyLocation, videoLink, imageLink, location }, { new: true })
         .then( ( data: any ) => {
             console.log( 'updated: ', data );
             res.status( 200 ).send( { msg: 'ok', data: data } );
