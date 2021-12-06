@@ -140,7 +140,7 @@ exports.toggleContacted = ( req: Request, res: Response, next: NextFunction ) =>
     Customer.findById( userId )
         .then( async ( data: any ) => {
             console.log( 'data found for toggling', data );
-            data.isContacted = true;
+            data.isContacted = !data.isContacted;
             const updated = await data.save( );
             return updated;            
         } )
