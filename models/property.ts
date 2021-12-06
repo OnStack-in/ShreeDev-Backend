@@ -10,7 +10,9 @@ const propertySechema: Schema = new Schema( {
         type: String,
         required: true
     },
-
+    location: {
+        type: String
+    },
     propertyName: {
         type: String,
         required: true
