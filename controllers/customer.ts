@@ -2,7 +2,7 @@ import { NextFunction, Request, Response, Router } from 'express';
 
 const Property = require( '../models/property' );
 const Customer = require( '../models/customers' );
-
+const Contact = require( '../models/contact' );
 
 exports.fetchAllProperties = async (req: Request, res: Response, next: NextFunction) => {
 
@@ -20,6 +20,32 @@ exports.fetchAllProperties = async (req: Request, res: Response, next: NextFunct
     
     } );
 
+}
+
+exports.addContact = async ( req: Request, res: Response, next: NextFunction ) => {
+    const { phone, email, name, message, sell } = req.body;
+    
+    let contact = new Contact( { 
+        phone: phone,
+        email: email,
+        name: name,
+        message: message,
+        sell: sell
+    } )
+    
+    contact.save( )
+           .then( ( data: any ) => {
+        
+                res.status(200).send( {
+                    msg: 'We will get back to you soon!',
+                    data: data
+                } );
+        
+            } )
+           .catch( ( err: any ) => {
+                console.log( 'error while creating service ', err );
+                res.status(500).send( { msg: 'Internal Server error', data: [ ] } );
+           } ) 
 }
 
 
