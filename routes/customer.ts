@@ -23,7 +23,8 @@ router.get( '/all-properties', customer.fetchAllProperties );
 // 3. Contact us -done
 router.post( '/contact', customer.postCustomer );
 
-
+//4. Contact 
+router.put( '/contact-us', customer.addContact );
 
 
 module.exports = router;
