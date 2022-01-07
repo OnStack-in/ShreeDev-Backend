@@ -14,7 +14,7 @@ const mongoose = require('mongoose');
 
 // const cors1 = require('./middlewares/cors');
 
-// const auth = require( './routes/auth' );
+const auth = require( './routes/auth' );
 const admin = require( './routes/admin' );
 const customer = require( './routes/customer' );
 
@@ -35,7 +35,7 @@ app.use( express.urlencoded( { extended: true } ) );
 // app.use( cors );
 
 
-// app.use( '/auth', auth );
+app.use( '/auth', auth );
 app.use( '/admin', admin );
 app.use( '/customer', customer ); 
 
