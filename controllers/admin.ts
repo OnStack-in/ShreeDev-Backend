@@ -121,9 +121,9 @@ exports.deleteProperty = async ( req: Request, res: Response, next: NextFunction
 exports.fetchCustomers = async (req: Request, res: Response, next: NextFunction) => {
 
     Customer.find( { role: 'customer' } )
-        .populate( { path: 'interestedPropertyId' } )
+        .populate( 'interestedPropertyId' )
         .then( ( data: any ) => {
-            console.log( 'Fetched customers' );
+            console.log( 'Fetched customers', data );
             res.status( 200 ).send( { msg: 'ok', data: data } );
         } )
         .catch( ( err: Error ) => {
